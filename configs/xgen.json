@@ -6,7 +6,6 @@
         "train_label_path": null,
         "eval_data_path": null,
         "eval_label_path": null,
-        "pretrain_model_weights_path": null,
         "batch_size": 4,
         "lr_G": 1e-4,
         "nch_ker": 16,
@@ -47,7 +46,7 @@
         "sp_prune_threshold": -1.0
     },
     "task": {
-        "pretrained_model_path": null,
+        "pretrained_model_path": "./pretrained/model_epoch0500.pth",
         "max_searching": 10
     },
    "user_requirements": {

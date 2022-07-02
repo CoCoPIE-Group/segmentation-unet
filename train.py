@@ -353,13 +353,13 @@ class Train:
                 self.save(dir_chck, netG, optimG, epoch)
 
             model_dummy = de_parallel(copy.deepcopy(netG)).cpu()
-            xgen_record(self.args_ai, model_dummy, loss_G_cls_val, epoch=epoch)
+            xgen_record(self.args_ai, model_dummy, -loss_G_cls_val, epoch=epoch)
             del model_dummy
 
         loss_G_cls_val = self.val(netG, loader_val, num_batch_val, -1, device, fn_CLS, num_freq_disp, transform_inv, transform_ts2np,
                  num_val, dir_result_val, cmap, writer_val)
         model_dummy = de_parallel(copy.deepcopy(netG))
-        xgen_record(self.args_ai, model_dummy, loss_G_cls_val, epoch=-1)
+        xgen_record(self.args_ai, model_dummy, -loss_G_cls_val, epoch=-1)
         del model_dummy
 
         writer_train.close()
