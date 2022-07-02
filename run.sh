@@ -8,7 +8,7 @@ CHECKPOINT_PATH=${4:-"${REMAKR}/checkpoint"}
 python main.py --mode train \
                --scope unet \
                --name_data em \
-               --dir_data data_mtk \
+               --dir_data datasets \
                --dir_log ${LOG_PATH} \
                --dir_result ${RESULT_PATH} \
                --dir_checkpoint ${CHECKPOINT_PATH} \

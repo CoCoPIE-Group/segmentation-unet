@@ -365,6 +365,7 @@ class Train:
         writer_train.close()
         writer_val.close()
 
+        return self.args_ai
 
     def test(self):
         mode = self.mode

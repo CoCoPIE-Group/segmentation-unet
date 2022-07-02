@@ -4,7 +4,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 
 ##
-dir_data = '../original_tf_unet_master/data/membrane/'
+dir_data = './datasets/em'
 
 name_target = 'train-labels.tif'
 name_data = 'train-volume.tif'
