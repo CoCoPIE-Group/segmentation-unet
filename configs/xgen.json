@@ -52,11 +52,11 @@
     },
    "user_requirements": {
        "accuracy": null,
-       "latency": 92.373,
+       "latency": 31,
        "margin": 0.1,
-       "searching_variable": null,
-       "searching_range": null,
-       "searching_step_size": null
+       "searching_variable": "nch_ker",
+       "searching_range": [16, 64],
+       "searching_step_size": 16
    },
     "compiler": {
        "input_shape": "(1,3,384,384)",
