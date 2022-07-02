@@ -6,17 +6,17 @@
         "train_label_path": null,
         "eval_data_path": null,
         "eval_label_path": null,
-        "pretrain_model_weights_path": null,
+        "pretrain_model_weights_path": "./pretrained/model_epoch0500.pth",
         "batch_size": 4,
         "lr_G": 1e-4,
         "nch_ker": 16,
         "ny_in": 384,
         "nx_in": 384,
-        "nch_in": 1,
-        "nch_out": 1,
+        "nch_in": 3,
+        "nch_out": 3,
         "ny_load": 384,
         "nx_load": 384,
-        "nch_load": 1,
+        "nch_load": 3,
         "ny_out": 384,
         "nx_out": 384,
         "gpu_ids": 0
@@ -59,7 +59,7 @@
        "searching_step_size": null
    },
     "compiler": {
-       "input_shape": "(1,1,384,384)",
+       "input_shape": "(1,3,384,384)",
         "devices": ["R38M20BDTME"],
         "opset_version": 11
    }

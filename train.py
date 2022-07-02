@@ -413,6 +413,8 @@ class Train:
         init_weights(netG, init_type='normal', init_gain=0.02)
         netG.to(device)
 
+        xgen_load(netG, args_ai=self.args_ai)
+
         st_epoch = 0
         netG, st_epoch = self.load(dir_chck, netG)
 

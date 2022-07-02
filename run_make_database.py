@@ -45,7 +45,10 @@ for i in range(nframe_train):
     img_data.seek(id_frame[i + offset_nframe])
 
     target_ = np.asarray(img_target)
+    target_ = np.stack([target_] * 3, axis=2)
     data_ = np.asarray(img_data)
+    data_ = np.stack([data_] * 3, axis=2)
+
 
     np.save(os.path.join(dir_save_train, "input_%03d.npy" % i), (data_))
     np.save(os.path.join(dir_save_train, "label_%03d.npy" % i), (target_))
@@ -58,7 +61,9 @@ for i in range(nframe_val):
     img_data.seek(id_frame[i + offset_nframe])
 
     target_ = np.asarray(img_target)
+    target_ = np.stack([target_] * 3, axis=2)
     data_ = np.asarray(img_data)
+    data_ = np.stack([data_] * 3, axis=2)
 
     np.save(os.path.join(dir_save_val, "input_%03d.npy" % i), (data_))
     np.save(os.path.join(dir_save_val, "label_%03d.npy" % i), (target_))
@@ -71,7 +76,9 @@ for i in range(nframe_test):
     img_data.seek(id_frame[i + offset_nframe])
 
     target_ = np.asarray(img_target)
+    target_ = np.stack([target_] * 3, axis=2)
     data_ = np.asarray(img_data)
+    data_ = np.stack([data_] * 3, axis=2)
 
     np.save(os.path.join(dir_save_test, "input_%03d.npy" % i), (data_))
     np.save(os.path.join(dir_save_test, "label_%03d.npy" % i), (target_))

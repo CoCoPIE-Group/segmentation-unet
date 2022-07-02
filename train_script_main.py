@@ -87,10 +87,11 @@ def training_main(args_ai):
     TRAINER = Train(ARGS, args_ai)
 
     if ARGS.mode == 'train':
-        TRAINER.train()
+        args_ai = TRAINER.train()
     elif ARGS.mode == 'test':
         TRAINER.test()
 
+    return args_ai
 
 if __name__ == '__main__':
     args_ai = None
