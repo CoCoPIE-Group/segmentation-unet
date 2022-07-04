@@ -227,7 +227,12 @@ class Train:
         num_batch_val = int((num_val / batch_size) + ((num_val % batch_size) != 0))
 
         ## setup network
-        netG = UNet(nch_in, nch_out, nch_ker, norm)
+        if self.args_ai.model == "unet":
+            netG = UNet(nch_in, nch_out, nch_ker, norm)
+        elif self.args_ai.model == "unet_small_dense1":
+            netG = UNet_small_dense1(nch_in, nch_out, nch_ker, norm)
+        elif self.args_ai.model == "unet_small_dense2":
+            netG = UNet_small_dense2(nch_in, nch_out, nch_ker, norm)
         # netG = CNP(nch_in, nch_out, nch_ker, norm)
 
         init_weights(netG, init_type='normal', init_gain=0.02)
@@ -407,7 +412,12 @@ class Train:
         num_batch_test = int((num_test / batch_size) + ((num_test % batch_size) != 0))
 
         ## setup network
-        netG = UNet(nch_in, nch_out, nch_ker, norm)
+        if self.args_ai.model == "unet":
+            netG = UNet(nch_in, nch_out, nch_ker, norm)
+        elif self.args_ai.model == "unet_small_dense1":
+            netG = UNet_small_dense1(nch_in, nch_out, nch_ker, norm)
+        elif self.args_ai.model == "unet_small_dense2":
+            netG = UNet_small_dense2(nch_in, nch_out, nch_ker, norm)
         # netG = CNP(nch_in, nch_out, nch_ker, norm)
 
         init_weights(netG, init_type='normal', init_gain=0.02)

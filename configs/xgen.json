@@ -6,6 +6,8 @@
         "train_label_path": null,
         "eval_data_path": null,
         "eval_label_path": null,
+
+        "model": "unet_small_dense1",
         "batch_size": 4,
         "lr_G": 1e-4,
         "nch_ker": 16,

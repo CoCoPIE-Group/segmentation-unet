@@ -16,10 +16,11 @@ ny, nx = img_target.size
 nframe = img_target.n_frames
 
 ##
-nframe_train = 30   # The number of training set
-nframe_val = 3      # The number of validation set
-nframe_test = 30     # The number of test set
+nframe_train = 0   # The number of training set
+nframe_val = 0      # The number of validation set
+nframe_test = 3     # The number of test set
 
+# [30, 0, 0] -> [0, 30, 0] -> [0, 0, 3]
 dir_data = 'data_mtk/'
 
 dir_save_train = os.path.join(dir_data, 'train')
