@@ -23,14 +23,14 @@
         "gpu_ids": 0
     },
     "general": {
-        "work_place": "unet",
+        "work_place": "unet_small_dense1",
         "tran_scripts_path": null
     },
     "train": {
         "log_save_folder": "logs",
         "eval_dataset_id": null,
         "training_dataset_id": null,
-        "uuid": "unet",
+        "uuid": "unet_small_dense1",
         "accuracy_reverse_yn": 0,
         "common_save_best_yn": 1
     },

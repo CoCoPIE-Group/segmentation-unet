@@ -412,11 +412,11 @@ class Train:
         num_batch_test = int((num_test / batch_size) + ((num_test % batch_size) != 0))
 
         ## setup network
-        if self.args_ai.model == "unet":
+        if self.args.model == "unet":
             netG = UNet(nch_in, nch_out, nch_ker, norm)
-        elif self.args_ai.model == "unet_small_dense1":
+        elif self.args.model == "unet_small_dense1":
             netG = UNet_small_dense1(nch_in, nch_out, nch_ker, norm)
-        elif self.args_ai.model == "unet_small_dense2":
+        elif self.args.model == "unet_small_dense2":
             netG = UNet_small_dense2(nch_in, nch_out, nch_ker, norm)
         # netG = CNP(nch_in, nch_out, nch_ker, norm)
 
