@@ -34,7 +34,7 @@ elif FLAG_PLATFORM == 'laptop':
     parser.add_argument('--dir_data', default='./datasets', dest='dir_data')
 
 parser.add_argument('--mode', default='train', choices=['train', 'test'], dest='mode')
-parser.add_argument('--train_continue', default='on', choices=['on', 'off'], dest='train_continue')
+parser.add_argument('--train_continue', default='off', choices=['on', 'off'], dest='train_continue')
 
 parser.add_argument('--scope', default='unet', dest='scope')
 parser.add_argument('--norm', type=str, default='[]', dest='norm')

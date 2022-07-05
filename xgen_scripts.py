@@ -31,5 +31,5 @@ from cocogen import run
 #     return res
 
 if __name__ == '__main__':
-    xgen(training_main, run, xgen_config_path="./configs/xgen.json", xgen_mode='scaling')
+    xgen(training_main, run, xgen_config_path="./configs/xgen_search.json", xgen_mode='scaling')
 

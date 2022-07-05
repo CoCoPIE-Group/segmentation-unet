@@ -7,7 +7,7 @@
         "eval_data_path": null,
         "eval_label_path": null,
 
-        "model": "unet_small_dense1",
+        "model": "unet_small_dense2",
         "batch_size": 4,
         "lr_G": 1e-4,
         "nch_ker": 16,
@@ -23,14 +23,14 @@
         "gpu_ids": 0
     },
     "general": {
-        "work_place": "unet_small_dense1",
+        "work_place": "unet_small_dense2",
         "tran_scripts_path": null
     },
     "train": {
         "log_save_folder": "logs",
         "eval_dataset_id": null,
         "training_dataset_id": null,
-        "uuid": "unet_small_dense1",
+        "uuid": "unet_small_dense2",
         "accuracy_reverse_yn": 0,
         "common_save_best_yn": 1
     },
@@ -49,11 +49,11 @@
     },
     "task": {
         "pretrained_model_path": null,
-        "max_searching": 20
+        "max_searching": 10
     },
    "user_requirements": {
        "accuracy": null,
-       "latency": 30.657,
+       "latency": 31,
        "margin": 0.1,
        "searching_variable": "nch_ker",
        "searching_range": [1, 16],
