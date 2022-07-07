@@ -9,11 +9,10 @@
     "common_eval_epochs": 1,
     "common_train_batch_size": 1,
     "root_path": "./Xgen/",
-    "pretrain_model_weights_path": null,
-    "model": "unet",
+    "model": "unet_small_dense1",
     "batch_size": 4,
     "lr_G": 0.0001,
-    "nch_ker": 9,
+    "nch_ker": 16,
     "ny_in": 384,
     "nx_in": 384,
     "nch_in": 1,
@@ -23,11 +22,12 @@
     "nch_load": 1,
     "ny_out": 384,
     "nx_out": 384,
-    "gpu_ids": 0
+    "gpu_ids": 0,
+    "pretrain_model_weights_path": "./unet_small_dense1/unet_small_dense1.pth"
   },
   "general": {
     "user_id": "test",
-    "work_place": "unet_search",
+    "work_place": "unet_small_dense1",
     "tran_scripts_path": null
   },
   "prune": {

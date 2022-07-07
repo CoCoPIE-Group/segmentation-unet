@@ -3,8 +3,7 @@ import numpy as np
 import os
 
 
-path = "/home/shenxuan/project/UNet/pytorch_k_unet_master" \
-       "/resolution_384_same_mtk/results/unet/em/test/images/"
+path = "/home/tmp00047/test_effnet/Unet-pytorch/results/unet/em/test/images/"
 
 file_name_list = os.listdir(path)
 

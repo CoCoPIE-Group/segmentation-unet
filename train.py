@@ -426,7 +426,7 @@ class Train:
         xgen_load(netG, args_ai=self.args_ai)
 
         st_epoch = 0
-        netG, st_epoch = self.load(dir_chck, netG)
+        # netG, st_epoch = self.load(dir_chck, netG)
 
         if gpu_ids:
             netG = torch.nn.DataParallel(netG, gpu_ids)  # multi-GPUs
