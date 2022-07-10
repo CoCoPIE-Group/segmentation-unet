@@ -217,8 +217,8 @@ class Train:
         dataset_train = Dataset(dir_data_train, data_type=self.data_type, transform=transform_train)
         dataset_val = Dataset(dir_data_val, data_type=self.data_type, transform=transform_val)
 
-        loader_train = torch.utils.data.DataLoader(dataset_train, batch_size=batch_size, shuffle=True, num_workers=8)
-        loader_val = torch.utils.data.DataLoader(dataset_val, batch_size=batch_size, shuffle=True, num_workers=8)
+        loader_train = torch.utils.data.DataLoader(dataset_train, batch_size=batch_size, shuffle=True, num_workers=0)
+        loader_val = torch.utils.data.DataLoader(dataset_val, batch_size=batch_size, shuffle=True, num_workers=0)
 
         num_train = len(dataset_train)
         num_val = len(dataset_val)
@@ -405,7 +405,7 @@ class Train:
 
         dataset_test = Dataset(dir_data_test, data_type=self.data_type, transform=transform_test)
 
-        loader_test = torch.utils.data.DataLoader(dataset_test, batch_size=batch_size, shuffle=False, num_workers=8)
+        loader_test = torch.utils.data.DataLoader(dataset_test, batch_size=batch_size, shuffle=False, num_workers=0)
 
         num_test = len(dataset_test)
 

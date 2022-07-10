@@ -23,7 +23,7 @@
     "ny_out": 384,
     "nx_out": 384,
     "gpu_ids": 0,
-    "pretrain_model_weights_path": "./unet_search/5e861a97-7544-4951-9769-fee199d0167f.pth"
+    "pretrain_model_weights_path": "./unet/unet.pth"
   },
   "general": {
     "user_id": "test",
