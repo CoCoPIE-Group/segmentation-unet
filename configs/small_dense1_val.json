@@ -22,7 +22,7 @@
     "nch_load": 1,
     "ny_out": 384,
     "nx_out": 384,
-    "gpu_ids": 0,
+    "gpu_ids": [0],
     "pretrain_model_weights_path": "./unet_small_dense1/unet_small_dense1.pth"
   },
   "general": {
