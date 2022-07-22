@@ -12,6 +12,10 @@ cudnn.benchmark = True
 cudnn.fastest = True
 
 FLAG_PLATFORM = 'laptop'
+
+COCOPIE_MAP = {'train_data_path': XgenArgs.cocopie_train_data_path,
+               'eval_data_path': XgenArgs.cocopie_eval_data_path}
+
 # FLAG_PLATFORM = 'colab'
 
 ## setup parse
