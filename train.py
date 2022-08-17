@@ -15,7 +15,7 @@ import pydensecrf.densecrf as dcrf
 from pydensecrf.utils import unary_from_softmax, create_pairwise_bilateral, create_pairwise_gaussian
 
 from co_lib import Co_Lib as CL
-from xgen_tools import xgen_record, xgen_init, xgen_load, XgenArgs,xgen
+from xgen_tools import xgen_record, xgen_init, xgen_load, XgenArgs
 
 from utils.torch_utils import print_sparsity, de_parallel
 
@@ -65,7 +65,9 @@ class Train:
         self.num_freq_disp = args.num_freq_disp
         self.num_freq_save = args.num_freq_save
 
-        self.gpu_ids = args.gpu_ids
+        # self.gpu_ids = args.gpu_ids
+        self.gpu_ids = args_ai["general"]["CUDA_VISIBLE_DEVICES"]
+        self.gpu_ids = [int(s) for s in self.gpu_ids.split(',')]
 
         if self.gpu_ids and torch.cuda.is_available():
             self.device = torch.device("cuda:%d" % self.gpu_ids[0])

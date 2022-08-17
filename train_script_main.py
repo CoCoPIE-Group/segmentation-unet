@@ -4,7 +4,7 @@ import json
 import torch.backends.cudnn as cudnn
 from train import *
 from utils.utils import *
-from xgen_tools import xgen_record, xgen_init, xgen_load, XgenArgs,xgen
+from xgen_tools import xgen_record, xgen_init, xgen_load, XgenArgs
 
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 
@@ -77,7 +77,7 @@ parser.add_argument('-c', '--config', default='', type=str, metavar='FILE',
 
 PARSER = Parser(parser)
 
-def training_main(args_ai):
+def training_main(args_ai=None):
     ARGS = PARSER.get_arguments()
     PARSER.write_args()
     PARSER.print_args()
@@ -86,7 +86,7 @@ def training_main(args_ai):
         with open(ARGS.config, 'r') as f:
             args_ai = json.load(f)
 
-    ARGS = xgen_init(ARGS, args_ai)
+    ARGS, args_ai = xgen_init(ARGS, args_ai, COCOPIE_MAP)
 
     TRAINER = Train(ARGS, args_ai)
 
@@ -95,8 +95,7 @@ def training_main(args_ai):
     elif ARGS.mode == 'test':
         TRAINER.test()
 
-    return args_ai
+    # return args_ai
 
 if __name__ == '__main__':
-    args_ai = None
-    training_main(args_ai)
+    training_main(args_ai=None)

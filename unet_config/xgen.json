@@ -2,7 +2,10 @@
   "general": {
     "work_place": null,
     "tran_scripts_path": null,
-    "pretrained_model_path": "./unet_config/xgen.pth"
+    "pretrained_model_path": "./unet_config/xgen.pth",
+    "enable_ddp": false,
+    "CUDA_VISIBLE_DEVICES":  "0,1,2,3",
+    "random_seed": 3407
   },
   "train": {
     "log_save_folder": "logs",
@@ -32,7 +35,7 @@
     "eval_data_path": null,
     "eval_label_path": null,
     "model": "unet",
-    "batch_size": 4,
+    "batch_size": 8,
     "lr_G": 0.0001,
     "nch_ker": 9,
     "ny_in": 384,
@@ -43,13 +46,11 @@
     "nx_load": 384,
     "nch_load": 1,
     "ny_out": 384,
-    "nx_out": 384,
-    "gpu_ids": [
-      0
-    ]
+    "nx_out": 384
   },
   "pruning": {
     "sparsity_type": "block_punched",
+    "sp_prune_before_retrain": true,
     "prune_method": null,
     "prune_layers": null,
     "prune_weight_ranking": "intra-layer",
