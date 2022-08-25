@@ -75,9 +75,9 @@ parser.add_argument('--num_freq_save', type=int,  default=50, dest='num_freq_sav
 parser.add_argument('-c', '--config', default='', type=str, metavar='FILE',
                     help='YAML config file specifying default arguments')
 
-PARSER = Parser(parser)
 
 def training_main(args_ai=None):
+    PARSER = Parser(parser)
     ARGS = PARSER.get_arguments()
     PARSER.write_args()
     PARSER.print_args()
@@ -87,7 +87,7 @@ def training_main(args_ai=None):
             args_ai = json.load(f)
 
     # ARGS, args_ai = xgen_init(ARGS, args_ai, COCOPIE_MAP)
-    ARGS = xgen_init(ARGS, args_ai, COCOPIE_MAP)
+    ARGS, args_ai = xgen_init(ARGS, args_ai, COCOPIE_MAP)
 
     TRAINER = Train(ARGS, args_ai)
 
