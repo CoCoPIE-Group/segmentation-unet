@@ -86,7 +86,8 @@ def training_main(args_ai=None):
         with open(ARGS.config, 'r') as f:
             args_ai = json.load(f)
 
-    ARGS, args_ai = xgen_init(ARGS, args_ai, COCOPIE_MAP)
+    # ARGS, args_ai = xgen_init(ARGS, args_ai, COCOPIE_MAP)
+    ARGS = xgen_init(ARGS, args_ai, COCOPIE_MAP)
 
     TRAINER = Train(ARGS, args_ai)
 
@@ -98,4 +99,7 @@ def training_main(args_ai=None):
     # return args_ai
 
 if __name__ == '__main__':
-    training_main(args_ai=None)
+    # task_json = './unet_config/xgen_val.json'
+    # args_ai = json.load(open(task_json,'r'))
+    args_ai = None
+    training_main(args_ai)

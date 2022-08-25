@@ -69,11 +69,11 @@ class Train:
         self.gpu_ids = args_ai["general"]["CUDA_VISIBLE_DEVICES"]
         self.gpu_ids = [int(s) for s in self.gpu_ids.split(',')]
 
-        if self.gpu_ids and torch.cuda.is_available():
-            self.device = torch.device("cuda:%d" % self.gpu_ids[0])
-            torch.cuda.set_device(self.gpu_ids[0])
-        else:
-            self.device = torch.device("cpu")
+        # if self.gpu_ids and torch.cuda.is_available():
+        #     self.device = torch.device("cuda:%d" % self.gpu_ids[0])
+        #     torch.cuda.set_device(self.gpu_ids[0])
+        # else:
+        #     self.device = torch.device("cpu")
 
     def save(self, dir_chck, netG, optimG, epoch):
         if not os.path.exists(dir_chck):
@@ -116,7 +116,7 @@ class Train:
             optimG.load_state_dict(dict_net['optimG'])
             return netG, optimG, epoch
 
-    def val(self, netG, loader_val, num_batch_val, epoch, device, fn_CLS, num_freq_disp, transform_inv, transform_ts2np,
+    def val(self, netG, loader_val, num_batch_val, epoch, fn_CLS, num_freq_disp, transform_inv, transform_ts2np,
             num_val, dir_result_val, cmap, writer_val):
         with torch.no_grad():
             netG.eval()
@@ -127,8 +127,8 @@ class Train:
                 def should(freq):
                     return freq > 0 and (i % freq == 0 or i == num_batch_val)
 
-                input = data['input'].to(device)
-                label = data['label'].to(device)
+                input = data['input'].cuda()
+                label = data['label'].cuda()
 
                 # forward netG
                 output = netG(input)
@@ -177,7 +177,6 @@ class Train:
         beta1 = self.beta1
 
         batch_size = self.batch_size
-        device = self.device
 
         gpu_ids = self.gpu_ids
 
@@ -238,7 +237,7 @@ class Train:
         # netG = CNP(nch_in, nch_out, nch_ker, norm)
 
         init_weights(netG, init_type='normal', init_gain=0.02)
-        netG.to(device)
+        netG.cuda()
 
         paramsG = netG.parameters()
         optimG = torch.optim.Adam(paramsG, lr=lr_G, betas=(beta1, 0.999))
@@ -258,7 +257,7 @@ class Train:
             netG, optimG, st_epoch = self.load(dir_chck, netG, optimG)
 
         if gpu_ids:
-            netG = torch.nn.DataParallel(netG, gpu_ids)  # multi-GPUs
+            netG = torch.nn.DataParallel(netG)  # multi-GPUs
             # for state in optimG.state.values():
             #     for k, v in state.items():
             #         if isinstance(v, torch.Tensor):
@@ -271,7 +270,7 @@ class Train:
         # fn_CLS = nn.BCELoss().to(device)
         # fn_CLS = nn.NLLLoss().to(device)
 
-        fn_CLS = nn.BCEWithLogitsLoss().to(device)    # Binary-class: This loss combines a `Sigmoid` layer and the `BCELoss` in one single class.
+        fn_CLS = nn.BCEWithLogitsLoss().cuda()    # Binary-class: This loss combines a `Sigmoid` layer and the `BCELoss` in one single class.
         # fn_CLS = nn.CrossEntropyLoss().to(device)     # Multi-class: This criterion combines :func:`nn.LogSoftmax` and :func:`nn.NLLLoss` in one single class.
 
         ## setup tensorboard
@@ -293,8 +292,8 @@ class Train:
                 def should(freq):
                     return freq > 0 and (i % freq == 0 or i == num_batch_train)
 
-                input = data['input'].to(device)
-                label = data['label'].to(device)
+                input = data['input'].cuda()
+                label = data['label'].cuda()
 
                 # forward netG
                 output = netG(input)
@@ -343,7 +342,7 @@ class Train:
             writer_train.add_scalar('loss_G_cls', np.mean(loss_G_cls_train), epoch)
 
             ## validation phase
-            loss_G_cls_val = self.val(netG, loader_val, num_batch_val, epoch, device, fn_CLS, num_freq_disp, transform_inv, transform_ts2np,
+            loss_G_cls_val = self.val(netG, loader_val, num_batch_val, epoch, fn_CLS, num_freq_disp, transform_inv, transform_ts2np,
                 num_val, dir_result_val, cmap, writer_val)
 
             # update schduler
@@ -363,7 +362,7 @@ class Train:
             xgen_record(self.args_ai, model_dummy, -loss_G_cls_val, epoch=epoch)
             del model_dummy
 
-        loss_G_cls_val = self.val(netG, loader_val, num_batch_val, -1, device, fn_CLS, num_freq_disp, transform_inv, transform_ts2np,
+        loss_G_cls_val = self.val(netG, loader_val, num_batch_val, -1, fn_CLS, num_freq_disp, transform_inv, transform_ts2np,
                  num_val, dir_result_val, cmap, writer_val)
         model_dummy = de_parallel(copy.deepcopy(netG))
         xgen_record(self.args_ai, model_dummy, -loss_G_cls_val, epoch=-1)
@@ -378,7 +377,6 @@ class Train:
         mode = self.mode
 
         batch_size = self.batch_size
-        device = self.device
         gpu_ids = self.gpu_ids
 
         nch_in = self.nch_in
@@ -423,7 +421,7 @@ class Train:
         # netG = CNP(nch_in, nch_out, nch_ker, norm)
 
         init_weights(netG, init_type='normal', init_gain=0.02)
-        netG.to(device)
+        netG.cuda()
 
         xgen_load(netG, args_ai=self.args_ai)
 
@@ -431,12 +429,12 @@ class Train:
         # netG, st_epoch = self.load(dir_chck, netG)
 
         if gpu_ids:
-            netG = torch.nn.DataParallel(netG, gpu_ids)  # multi-GPUs
+            netG = torch.nn.DataParallel(netG)  # multi-GPUs
 
         ## setup loss & optimization
         # fn_L1 = nn.L1Loss().to(device)  # L1
         # fn_CLS = nn.BCELoss().to(device)
-        fn_CLS = nn.BCEWithLogitsLoss().to(device)
+        fn_CLS = nn.BCEWithLogitsLoss().cuda()
 
         ## test phase
         with torch.no_grad():
@@ -446,8 +444,8 @@ class Train:
             loss_G_cls_test = []
 
             for i, data in enumerate(loader_test, 1):
-                input = data['input'].to(device)
-                label = data['label'].to(device)
+                input = data['input'].cuda()
+                label = data['label'].cuda()
 
                 output = netG(input)
 
