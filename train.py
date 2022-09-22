@@ -41,7 +41,7 @@ class Train:
         self.num_epoch = args.common_train_epochs
         self.batch_size = args.batch_size
 
-        self.lr_G = args.lr_G
+        self.lr_G = args.learning_rate
 
         self.optim = args.optim
         self.beta1 = args.beta1

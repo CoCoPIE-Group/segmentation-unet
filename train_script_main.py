@@ -48,7 +48,7 @@ parser.add_argument('--name_data', type=str, default='em', dest='name_data')
 parser.add_argument('--num_epoch', type=int,  default=500, dest='num_epoch')
 # parser.add_argument('--batch_size', type=int, default=4, dest='batch_size')
 #
-parser.add_argument('--lr_G', type=float, default=1e-4, dest='lr_G')
+# parser.add_argument('--lr_G', type=float, default=1e-4, dest='lr_G')
 
 parser.add_argument('--optim', default='adam', choices=['sgd', 'adam', 'rmsprop'], dest='optim')
 parser.add_argument('--beta1', default=0.5, dest='beta1')
@@ -86,7 +86,7 @@ def training_main(args_ai=None):
         with open(ARGS.config, 'r') as f:
             args_ai = json.load(f)
 
-    # ARGS, args_ai = xgen_init(ARGS, args_ai, COCOPIE_MAP)
+    # ARGS = xgen_init(ARGS, args_ai, COCOPIE_MAP)
     ARGS, args_ai = xgen_init(ARGS, args_ai, COCOPIE_MAP)
 
     TRAINER = Train(ARGS, args_ai)

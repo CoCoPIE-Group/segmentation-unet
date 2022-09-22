@@ -37,7 +37,7 @@
     "mode": "train",
     "model": "unet",
     "batch_size": 8,
-    "lr_G": 0.0001,
+    "learning_rate": 0.0001,
     "nch_ker": 9,
     "ny_in": 384,
     "nx_in": 384,
