@@ -3,7 +3,7 @@ import numpy as np
 import os
 
 
-path = "/home/tmp00047/test_effnet/Unet-pytorch/results/unet/em/test/images/"
+path = "/home/tmp00047/test_effnet/Unet-pytorch/results/unet/test/images/"
 
 file_name_list = os.listdir(path)
 

@@ -4,7 +4,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 
 ##
-dir_data = './datasets/em'
+dir_data = './datasets'
 os.makedirs(dir_data, exist_ok=True)
 
 name_target = 'train-labels.tif'
@@ -22,7 +22,7 @@ def data_prepare(nframe_train, nframe_val, nframe_test):
 # The number of test set
 
     # [30, 0, 0] -> [0, 30, 0] -> [0, 0, 3]
-    dir_data = 'data_mtk/em'
+    dir_data = 'data_mtk'
 
     dir_save_train = os.path.join(dir_data, 'train')
     dir_save_val = os.path.join(dir_data, 'val')
