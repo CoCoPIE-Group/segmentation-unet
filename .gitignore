@@ -49,3 +49,5 @@ Thumbs.db
 *.wmv
 
 /third_party/
+
+xgen_scripts.py
